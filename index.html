@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
-            background-image: url('/ff.jpg'); /* Replace 'your-background-image.jpg' with the actual path to your background image */
+            background-image: url('./ff.jpg'); /* Replace 'your-background-image.jpg' with the actual path to your background image */
             background-size: cover;
             background-position: center;
             display: flex;
@@ -63,7 +63,7 @@
                     body: JSON.stringify(requestBody)
                 })
                 .then(response => {
-                    if (response.ok) {
+                    if (response.success) {
                         alert('Registration successful');
                     } else {
                         alert('Registration failed');
