@@ -61,10 +61,10 @@
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify(requestBody)
-                })
+                }).then(data=>data.JSON())
                 .then(response => {
-                    let responses=response.json()
-                    if (responses.success) {
+                    
+                    if (response.success) {
                         alert('Registration successful');
                     } else {
                         alert('Registration failed');
