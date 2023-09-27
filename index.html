@@ -63,7 +63,8 @@
                     body: JSON.stringify(requestBody)
                 })
                 .then(response => {
-                    if (response.ok) {
+                    let responses=response.json()
+                    if (responses.success) {
                         alert('Registration successful');
                     } else {
                         alert('Registration failed');
@@ -71,7 +72,7 @@
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    alert('Registration failed');
+                    alert('err');
                 });
             });
         });
