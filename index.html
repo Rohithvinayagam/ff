@@ -54,14 +54,14 @@
                     usermobno: formData.get('usermobno'),
                     password: formData.get('password')
                 };
-
+                alert(requestBody)
                 fetch('http://13.53.125.215:3000/register', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify(requestBody)
-                }).then(data=>data.JSON())
+                })
                 .then(response => {
                     
                     if (response.success) {
